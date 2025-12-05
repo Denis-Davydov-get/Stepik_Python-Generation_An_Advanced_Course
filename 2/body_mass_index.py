@@ -17,13 +17,29 @@
 # На вход программе подается два числа: масса и рост человека, каждое на отдельной строке.
 # Все входные числа являются действительными, используйте для них тип данных float.
 
-weight = float(input())
-height = float(input())
+def count_bmi(weight: float, height: float) -> str:
+    bmi = weight / (height ** 2)
+    print(weight, height, bmi)
+    if bmi < 18.5:
+        print("Недостаточная масса")
+        return "Недостаточная масса"
+    elif 18.5 <= bmi < 25.1:
+        print("Оптимальная масса")
+        return "Оптимальная масса"
+    else:
+        print("Избыточная масса")
+        return "Избыточная масса"
 
-BMI = weight / (height ** 2)
-if BMI < 18.5:
-    print("Недостаточная масса")
-elif BMI >= 18.5 and BMI < 25:
-    print("Оптимальная масса")
-else:
-    print("Избыточная масса")
+
+if '__main__' == __name__:
+    assert count_bmi(65, 1.75) == "Оптимальная масса"
+    assert count_bmi(80, 2.23) == "Недостаточная масса"
+    assert count_bmi(80, 1.6) == "Избыточная масса"
+    assert count_bmi(120, 2.20) == "Оптимальная масса"
+    assert count_bmi(65, 1.66) == "Оптимальная масса"
+    assert count_bmi(40, 1.75) == "Недостаточная масса"
+    assert count_bmi(40, 1.66) == "Недостаточная масса"
+    assert count_bmi(21, 1.67) == "Недостаточная масса"
+    assert count_bmi(25, 1) == "Оптимальная масса"
+    assert count_bmi(18.5, 1) == "Оптимальная масса"
+
